@@ -68,3 +68,41 @@ describe('checkWeight against age (1 year, expected 10 kg)', () => {
     )
   })
 })
+
+describe('checkWeight float precision (age 24 months, expected 13 kg)', () => {
+  it('handles exactly 60% above without safeguarding', () => {
+    expect(measured(20.8, 24)).toEqual({
+      ok: true,
+      notes: ['20.8 kg is higher than expected for this age (about 13 kg). Check the weight and age.'],
+      safeguarding: null,
+    })
+  })
+
+  it('raises safeguarding above 60%', () => {
+    expect(measured(20.9, 24)).toMatchObject({
+      safeguarding: { weightKg: 20.9, expectedKg: 13, message: fixture.weightForAgeChecks.messageAbove },
+    })
+  })
+
+  it('handles exactly 40% below without safeguarding', () => {
+    expect(measured(7.8, 24)).toEqual({
+      ok: true,
+      notes: ['7.8 kg is lower than expected for this age (about 13 kg). Check the weight and age.'],
+      safeguarding: null,
+    })
+  })
+
+  it('raises safeguarding below 40%', () => {
+    expect(measured(7.7, 24)).toMatchObject({
+      safeguarding: { weightKg: 7.7, expectedKg: 13, message: fixture.weightForAgeChecks.messageBelow },
+    })
+  })
+
+  it('handles exactly 25% within tolerance', () => {
+    expect(measured(16.25, 24)).toEqual({
+      ok: true,
+      notes: [],
+      safeguarding: null,
+    })
+  })
+})

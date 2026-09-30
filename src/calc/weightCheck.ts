@@ -30,7 +30,7 @@ export const checkWeight = (patient: PatientInput, data: CheckData): WeightCheck
   const expectedKg = ageMonths === null ? null : estimateWeight(data.weightFromAge, ageMonths)
   if (expectedKg === null) return { ok: true, notes, safeguarding: null }
   const checks = data.weightForAgeChecks
-  const differsByPercent = ((weightKg - expectedKg) * 100) / expectedKg
+  const differsByPercent = Math.round(((weightKg - expectedKg) * 100 * 1e6) / expectedKg) / 1e6
   if (-differsByPercent > checks.safeguardingBelowPercent) {
     return { ok: true, notes, safeguarding: { weightKg, expectedKg, message: checks.messageBelow } }
   }
