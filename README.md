@@ -17,7 +17,7 @@ Everything clinical lives in one file: [`drugs.yaml`](drugs.yaml). You never nee
 5. A second clinician reviews and approves the pull request.
 6. Press **Merge**. The site updates within a few minutes.
 
-The automatic checks are set up. The required second approval is not set up yet.
+The automatic checks are set up. The required second approval is not set up yet. Until it is, a failed check does not stop the **Merge** button. Never merge a pull request that shows a red cross.
 
 If a check fails, open the pull request, press **Details** next to the failed check, and read the lines under **Check drugs.yaml**. Each one names the drug and field, for example `Adrenaline → dose → max: must be a number (found "1,5")`. The rate table is on the check's **Summary** page.
 
