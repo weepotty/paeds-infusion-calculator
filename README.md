@@ -1,5 +1,7 @@
 # Paeds Infusion Calculator
 
+**Live calculator:** https://weepotty.github.io/paeds-infusion-calculator/
+
 A web calculator for drug infusions in paediatric intensive care and paediatric transfer. Enter the child's age and weight, and it shows how to make up each syringe and the rate in mL/hour.
 
 > **All doses, concentrations and limits in this repository are placeholders. Do not use clinically.**
