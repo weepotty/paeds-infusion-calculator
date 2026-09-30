@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { formatAge, formatNumber, formatRate } from './format'
+import { formatAge, formatNumber, formatRate, formatWeight } from './format'
 
 describe('formatNumber', () => {
   it.each([
@@ -40,5 +40,19 @@ describe('formatAge', () => {
     [42, '3 years 6 months'],
   ])('%d months → %s', (months, expected) => {
     expect(formatAge(months)).toBe(expected)
+  })
+})
+
+describe('formatWeight', () => {
+  it.each([
+    [12.25, '12.25'],
+    [150.4, '150.4'],
+    [100.5, '100.5'],
+    [14, '14'],
+    [0.3, '0.3'],
+    [3.456, '3.46'],
+    [Number.NaN, '–'],
+  ])('%d → %s', (value, expected) => {
+    expect(formatWeight(value)).toBe(expected)
   })
 })

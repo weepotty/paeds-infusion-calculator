@@ -1,4 +1,4 @@
-import { formatNumber, formatRate } from '../calc/format'
+import { formatNumber, formatRate, formatWeight } from '../calc/format'
 import { calculateInfusion, type Infusion } from '../calc/infusion'
 import { doseUnitLabel } from '../calc/units'
 import type { Drug } from '../data/types'
@@ -58,7 +58,7 @@ const DrugDetails = ({ drug, weightKg, dose, standardDiluent, infusion, onDoseCh
       ) : (
         <div className="alert danger">
           Needs {formatNumber(infusion.drawUpMl)} mL of stock, which does not fit a {volume} mL syringe at{' '}
-          {formatNumber(weightKg)} kg. Check the guideline.
+          {formatWeight(weightKg)} kg. Check the guideline.
         </div>
       )}
       <div className="rule">

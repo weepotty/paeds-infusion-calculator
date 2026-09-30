@@ -1,4 +1,4 @@
-import { formatAge, formatNumber } from '../calc/format'
+import { formatAge, formatWeight } from '../calc/format'
 import { type Submission, validWeight } from '../calc/weightCheck'
 
 type Props = { submission: Submission | null; stale: boolean }
@@ -10,7 +10,7 @@ export const ResultsSummary = ({ submission, stale }: Props) => {
   if (weightKg === null) return <p className="sheet-meta">Enter a valid weight to see rates.</p>
   return (
     <p className="sheet-meta">
-      Rates for <b>{formatNumber(weightKg)} kg</b>
+      Rates for <b>{formatWeight(weightKg)} kg</b>
       {submission.estimated ? <span className="weight-src"> Estimated</span> : null}
       {submission.ageMonths === null ? null : (
         <>

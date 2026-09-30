@@ -1,4 +1,4 @@
-import { formatNumber } from '../calc/format'
+import { formatWeight } from '../calc/format'
 import { type Safeguarding, safeguardingDetail } from '../calc/weightCheck'
 
 type Props = { safeguarding: Safeguarding }
@@ -10,7 +10,7 @@ export const SafeguardingFlag = ({ safeguarding }: Props) => (
     </span>
     <div>
       <strong>Safeguarding flag</strong>
-      <p>{`${safeguardingDetail(safeguarding)} Proceeding with ${formatNumber(safeguarding.weightKg)} kg.`}</p>
+      <p>{`${safeguardingDetail(safeguarding)} Proceeding with ${formatWeight(safeguarding.weightKg)} kg.`}</p>
     </div>
   </div>
 )

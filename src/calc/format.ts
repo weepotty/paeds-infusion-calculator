@@ -1,5 +1,7 @@
 export const formatNumber = (n: number): string => (Number.isFinite(n) ? String(Number(n.toPrecision(3))) : '–')
 
+export const formatWeight = (kg: number): string => (Number.isFinite(kg) ? String(Number(kg.toFixed(2))) : '–')
+
 export const formatRate = (n: number): string => {
   if (!Number.isFinite(n)) return '–'
   if (n > 0 && n < 0.005) return '< 0.01'

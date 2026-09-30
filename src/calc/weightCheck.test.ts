@@ -17,6 +17,13 @@ describe('checkWeight limits', () => {
     })
   })
 
+  it('shows a blocked weight as entered', () => {
+    expect(measured(150.4)).toEqual({
+      ok: false,
+      message: '150.4 kg is not a possible weight. Enter a weight between 0.3 and 150 kg.',
+    })
+  })
+
   it.each([0.4, 85])('warns about %d kg but allows it', weightKg => {
     expect(measured(weightKg)).toEqual({
       ok: true,

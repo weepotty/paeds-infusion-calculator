@@ -15,6 +15,11 @@ it('shows weight and age', () => {
   expect(screen.getByText(/Rates for/)).toHaveTextContent('Rates for 14 kg · 3 years 6 months')
 })
 
+it('shows the weight as entered', () => {
+  render(<ResultsSummary submission={{ weightKg: 12.25, ageMonths: null, estimated: false, check: ok }} stale={false} />)
+  expect(screen.getByText(/Rates for/)).toHaveTextContent('Rates for 12.25 kg')
+})
+
 it('tags an estimated weight and omits a missing age', () => {
   render(<ResultsSummary submission={{ weightKg: 10, ageMonths: null, estimated: true, check: ok }} stale={false} />)
   expect(screen.getByText(/Rates for/)).toHaveTextContent('Rates for 10 kg Estimated')
