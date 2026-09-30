@@ -9,11 +9,14 @@ import { PatientForm } from './components/PatientForm'
 import { ResultsSummary } from './components/ResultsSummary'
 import { SafeguardingFlag } from './components/SafeguardingFlag'
 import { SafeguardingMask } from './components/SafeguardingMask'
+import { type RegisterUpdates, UpdateBanner } from './components/UpdateBanner'
 import type { AppData } from './data/types'
 
-type Props = { data: AppData }
+type Props = { data: AppData; registerUpdates?: RegisterUpdates }
 
-export const App = ({ data }: Props) => {
+const noUpdates: RegisterUpdates = () => {}
+
+export const App = ({ data, registerUpdates = noUpdates }: Props) => {
   const [acknowledged, setAcknowledged] = useState(false)
   const [submission, setSubmission] = useState<Submission | null>(null)
   const [stale, setStale] = useState(false)
@@ -41,6 +44,7 @@ export const App = ({ data }: Props) => {
 
   return (
     <>
+      <UpdateBanner registerUpdates={registerUpdates} />
       {acknowledged ? null : <Disclaimer disclaimer={data.disclaimer} onAcknowledge={() => setAcknowledged(true)} />}
       <div data-testid="page" inert={!acknowledged}>
         <Banner text={data.prototypeBanner} />

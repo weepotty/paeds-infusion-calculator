@@ -103,7 +103,7 @@ Rounding for display only: rates to 1 decimal place, or 2 below 1 mL/hr. Other v
 - `src/data/`: loads `drugs.yaml` at build time (bundled, not fetched at runtime), validates it with a Zod schema, and parses the readable strings into typed objects. Invalid data fails the build.
 - `src/calc/`: pure functions for unit conversion, rates, weight estimate and weight checks. No React.
 - `src/components/`: Disclaimer, Banner, PatientForm, ResultsSummary, SafeguardingMask, DrugList, DrugRow.
-- **Offline:** `vite-plugin-pwa` caches the app after the first visit.
+- **Offline:** `vite-plugin-pwa` caches the app after the first visit. It checks for a new version when the app comes back on screen and every 15 minutes while open. When new data is ready it shows "Drug data has been updated. Reload to use the new version." with a Reload button; it never reloads by itself.
 - **Font:** `@fontsource/roboto`, bundled.
 
 ## CI and deploy (GitHub Actions)

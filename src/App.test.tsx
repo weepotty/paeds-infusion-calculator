@@ -107,3 +107,10 @@ it('resets adjusted doses to the start dose on every Submit', async () => {
   await userEvent.click(adrenalineRow())
   expect(screen.getByLabelText('Dose for Adrenaline')).toHaveValue('0.1')
 })
+
+it('shows the update banner above the disclaimer so it can always be used', () => {
+  const registerUpdates = (onUpdateReady: (reload: () => void) => void) => onUpdateReady(() => {})
+  render(<App data={fixture} registerUpdates={registerUpdates} />)
+  expect(screen.getByRole('button', { name: 'Reload' })).toBeInTheDocument()
+  expect(screen.getByRole('button', { name: 'Reload' }).closest('[inert]')).toBeNull()
+})
