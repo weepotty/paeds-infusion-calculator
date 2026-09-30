@@ -51,7 +51,10 @@ export const App = ({ data, registerUpdates = noUpdates }: Props) => {
         <header className="bar">
           <div className="bar-inner">
             <div className="brand">
-              <strong>Paeds Infusion Calculator</strong> · PICU and transfer
+              <img className="brand-icon" src={`${import.meta.env.BASE_URL}icon.svg`} alt="" width={28} height={28} />
+              <span>
+                <strong>Paeds Infusion Calculator</strong> · PICU and transfer
+              </span>
             </div>
             <PatientForm
               bands={data.weightFromAge}

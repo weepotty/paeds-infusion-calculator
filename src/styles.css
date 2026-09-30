@@ -53,7 +53,8 @@ button:focus-visible, input:focus-visible { outline: 3px solid var(--accent); ou
 
 header.bar { background: var(--surface); border-bottom: 1px solid var(--line); }
 .bar-inner { max-width: 1120px; margin: 0 auto; padding: 10px 16px 12px; display: flex; flex-direction: column; align-items: center; gap: 6px; }
-.brand { font-size: 13px; color: var(--muted); text-align: center; }
+.brand { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted); text-align: center; }
+.brand-icon { flex: none; border-radius: 7px; }
 .brand strong { color: var(--ink); font-weight: 700; }
 
 .patient { width: 100%; max-width: 440px; display: grid; }
