@@ -23,7 +23,7 @@ it('asks the user to reload when new drug data arrives', async () => {
   const reload = vi.fn()
   render(<UpdateBanner registerUpdates={registerUpdates} />)
   updateArrives(reload)
-  expect(screen.getByRole('alert')).toHaveTextContent('Drug formulas have been updated by the administrator. Reload to use the new version.')
+  expect(screen.getByRole('alert')).toHaveTextContent('A newer version of this calculator is available. Reload to use the new version.')
   await userEvent.click(screen.getByRole('button', { name: 'Reload' }))
   expect(reload).toHaveBeenCalledOnce()
 })

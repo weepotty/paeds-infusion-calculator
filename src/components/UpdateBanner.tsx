@@ -16,7 +16,7 @@ export const UpdateBanner = ({ registerUpdates }: Props) => {
 
   return reload === null ? null : (
     <div className="update-banner" role="alert">
-      <span>Drug formulas have been updated by the administrator. Reload to use the new version.</span>
+      <span>A newer version of this calculator is available. Reload to use the new version.</span>
       <button type="button" onClick={reload}>
         Reload
       </button>
