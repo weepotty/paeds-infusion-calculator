@@ -10,12 +10,15 @@ Everything clinical lives in one file: [`drugs.yaml`](drugs.yaml). You never nee
 
 ### How a change goes live
 
+You need a GitHub account that has been added to this repository as a collaborator. Nothing needs installing: everything happens on github.com.
+
 1. Open [`drugs.yaml`](drugs.yaml) on github.com and press the pencil icon (**Edit this file**).
 2. Change the value you need, for example `max: 1` to `max: 0.5`.
-3. Press **Commit changes…**, choose **Create a new branch and start a pull request**, then **Propose changes**. Nothing is live yet.
-4. Automatic checks run on your change. They stop it if a number is missing, a unit is misspelt, or `min` is above `max`. They also show a before/after table of rates at a few example weights.
-5. A second clinician reviews and approves the pull request.
-6. Press **Merge**. The site updates within a few minutes.
+3. Press **Commit changes…**, choose **Create a new branch for this commit and start a pull request**, then press **Propose changes**.
+4. On the next page, press **Create pull request**. Nothing is live yet.
+5. Automatic checks run on your change. They stop it if a number is missing, a unit is misspelt, or `min` is above `max`. They also show a before/after table of rates at a few example weights.
+6. A second clinician reviews and approves the pull request.
+7. Press **Merge pull request**. The site updates within a few minutes. Anyone with the calculator open sees a banner asking them to reload for the new data.
 
 The automatic checks are set up. The required second approval is not set up yet. Until it is, a failed check does not stop the **Merge** button. Never merge a pull request that shows a red cross.
 
