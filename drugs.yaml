@@ -1,0 +1,292 @@
+# PAEDS INFUSION CALCULATOR: DRUG DATA
+#
+# Every dose, syringe and limit in the app comes from this file.
+# Change a number here and the app updates after your change is approved.
+#
+# HOW TO EDIT
+#   1. Change only the values after the colons. Leave the words before them alone.
+#   2. Keep the spaces at the start of each line exactly as they are.
+#   3. Use a full stop for decimals: 0.5, not 0,5 or .5
+#   4. Lines starting with # are notes for people. The app ignores them.
+#   5. Update "reviewed_by" and "reviewed_on" on any drug you change.
+#
+# UNITS THE APP UNDERSTANDS
+#   Amounts:     mg, micrograms, nanograms, units
+#   Dose units:  mg/kg/hour, micrograms/kg/min, micrograms/kg/hour,
+#                nanograms/kg/min, units/kg/hour
+#
+# DRUG GROUPS (these set the syringe label colour)
+#   vasopressor, opioid, benzodiazepine, induction, neuromuscular_blocker, other
+#
+# SYRINGE AMOUNT
+#   "0.3 mg/kg" means the syringe strength changes with the child's weight.
+#   "50 units" (no /kg) means the same syringe for every weight.
+#
+# ALL VALUES BELOW ARE PLACEHOLDERS AND MUST NOT BE USED CLINICALLY.
+
+version: placeholder-0.1
+updated: "2026-09-29"
+
+# The pop-up shown every time someone opens the calculator.
+# Leave a blank line between paragraphs in "text".
+disclaimer:
+  title: Please read
+  heading: "Disclaimer:"
+  text: |
+    PLACEHOLDER disclaimer text. Replace this with the approved wording.
+
+    A second paragraph can go here if needed.
+  button: I understand
+
+standard_diluent: glucose 5% or sodium chloride 0.9%
+
+# Weight checks.
+#   Outside the "block" range: no rates are shown.
+#   Outside the "warn" range: rates are shown with a warning.
+weight_limits:
+  block_below_kg: 0.3
+  block_above_kg: 150
+  warn_below_kg: 0.5
+  warn_above_kg: 80
+
+# Weight compared with the expected weight for age (from weight_from_age below).
+# Only runs when an age is entered and a measured weight is used.
+#   check: a gentle "check the weight and age" note.
+#   safeguarding: a red safeguarding flag above the drug list, with the message below.
+# Rates are still shown in both cases.
+weight_for_age_checks:
+  check_if_differs_by_percent: 25
+  safeguarding_if_below_by_percent: 40
+  safeguarding_if_above_by_percent: 60
+  safeguarding_message_below: >-
+    This weight is far below the expected weight for age. Confirm the weight and age.
+  safeguarding_message_above: >-
+    This weight is far above the expected weight for age. Confirm the weight and age.
+
+# Estimated weight from age. Used only when a clinician ticks "estimate weight".
+#   estimate (kg) = (age × multiply_by) + then_add_kg
+#   age_in: years or months. "years" uses completed years (3 years 8 months counts as 3).
+#   to_age includes the whole of that year, so "13 years" covers up to the 14th birthday.
+# The tick box is unavailable for any age not covered below.
+# To add a band for babies, copy the block and use months, e.g. from_age: 0 months.
+weight_from_age:
+  - name: UK resuscitation formula
+    source: PLACEHOLDER
+    from_age: 1 year
+    to_age: 13 years
+    age_in: years
+    multiply_by: 3
+    then_add_kg: 7
+
+drugs:
+  - name: Adrenaline
+    group: vasopressor
+    stock: 1 mg/mL
+    syringe:
+      amount: 0.3 mg/kg
+      make_up_to: 50 mL
+    dose:
+      unit: micrograms/kg/min
+      min: 0.05
+      start: 0.1
+      max: 1
+    notes: ""
+    reviewed_by: PLACEHOLDER
+    reviewed_on: PLACEHOLDER
+
+  - name: Noradrenaline
+    group: vasopressor
+    stock: 1 mg/mL
+    syringe:
+      amount: 0.3 mg/kg
+      make_up_to: 50 mL
+    dose:
+      unit: micrograms/kg/min
+      min: 0.05
+      start: 0.1
+      max: 1
+    notes: ""
+    reviewed_by: PLACEHOLDER
+    reviewed_on: PLACEHOLDER
+
+  - name: Dopamine
+    group: vasopressor
+    stock: 40 mg/mL
+    syringe:
+      amount: 15 mg/kg
+      make_up_to: 50 mL
+    dose:
+      unit: micrograms/kg/min
+      min: 5
+      start: 5
+      max: 20
+    notes: ""
+    reviewed_by: PLACEHOLDER
+    reviewed_on: PLACEHOLDER
+
+  - name: Dobutamine
+    group: vasopressor
+    stock: 12.5 mg/mL
+    syringe:
+      amount: 15 mg/kg
+      make_up_to: 50 mL
+    dose:
+      unit: micrograms/kg/min
+      min: 5
+      start: 5
+      max: 20
+    notes: ""
+    reviewed_by: PLACEHOLDER
+    reviewed_on: PLACEHOLDER
+
+  - name: Milrinone
+    group: vasopressor
+    stock: 1 mg/mL
+    syringe:
+      amount: 1.5 mg/kg
+      make_up_to: 50 mL
+    dose:
+      unit: micrograms/kg/min
+      min: 0.25
+      start: 0.5
+      max: 0.75
+    notes: ""
+    reviewed_by: PLACEHOLDER
+    reviewed_on: PLACEHOLDER
+
+  - name: Morphine
+    group: opioid
+    stock: 10 mg/mL
+    syringe:
+      amount: 1 mg/kg
+      make_up_to: 50 mL
+    dose:
+      unit: micrograms/kg/hour
+      min: 10
+      start: 20
+      max: 40
+    notes: ""
+    reviewed_by: PLACEHOLDER
+    reviewed_on: PLACEHOLDER
+
+  - name: Fentanyl
+    group: opioid
+    stock: 50 micrograms/mL
+    syringe:
+      amount: 50 micrograms/kg
+      make_up_to: 50 mL
+    dose:
+      unit: micrograms/kg/hour
+      min: 1
+      start: 2
+      max: 5
+    notes: ""
+    reviewed_by: PLACEHOLDER
+    reviewed_on: PLACEHOLDER
+
+  - name: Midazolam
+    group: benzodiazepine
+    stock: 5 mg/mL
+    syringe:
+      amount: 3 mg/kg
+      make_up_to: 50 mL
+    dose:
+      unit: micrograms/kg/hour
+      min: 60
+      start: 60
+      max: 240
+    notes: ""
+    reviewed_by: PLACEHOLDER
+    reviewed_on: PLACEHOLDER
+
+  - name: Ketamine
+    group: induction
+    stock: 50 mg/mL
+    syringe:
+      amount: 50 mg/kg
+      make_up_to: 50 mL
+    dose:
+      unit: mg/kg/hour
+      min: 0.5
+      start: 1
+      max: 2
+    notes: ""
+    reviewed_by: PLACEHOLDER
+    reviewed_on: PLACEHOLDER
+
+  - name: Thiopental
+    group: induction
+    stock: 25 mg/mL
+    syringe:
+      amount: 50 mg/kg
+      make_up_to: 50 mL
+      diluent: sodium chloride 0.9%
+    dose:
+      unit: mg/kg/hour
+      min: 1
+      start: 2
+      max: 5
+    notes: ""
+    reviewed_by: PLACEHOLDER
+    reviewed_on: PLACEHOLDER
+
+  - name: Rocuronium
+    group: neuromuscular_blocker
+    stock: 10 mg/mL
+    syringe:
+      amount: 10 mg/kg
+      make_up_to: 50 mL
+    dose:
+      unit: mg/kg/hour
+      min: 0.3
+      start: 0.3
+      max: 0.6
+    notes: Ventilated patients only.
+    reviewed_by: PLACEHOLDER
+    reviewed_on: PLACEHOLDER
+
+  - name: Salbutamol
+    group: other
+    stock: 1 mg/mL
+    syringe:
+      amount: 3 mg/kg
+      make_up_to: 50 mL
+    dose:
+      unit: micrograms/kg/min
+      min: 1
+      start: 1
+      max: 5
+    notes: ""
+    reviewed_by: PLACEHOLDER
+    reviewed_on: PLACEHOLDER
+
+  - name: Insulin (soluble)
+    group: other
+    stock: 100 units/mL
+    syringe:
+      amount: 50 units
+      make_up_to: 50 mL
+      diluent: sodium chloride 0.9%
+    dose:
+      unit: units/kg/hour
+      min: 0.05
+      start: 0.05
+      max: 0.1
+    notes: Same syringe for every weight.
+    reviewed_by: PLACEHOLDER
+    reviewed_on: PLACEHOLDER
+
+  - name: Dexmedetomidine
+    group: other
+    stock: 100 micrograms/mL
+    syringe:
+      amount: 200 micrograms
+      make_up_to: 50 mL
+    dose:
+      unit: micrograms/kg/hour
+      min: 0.2
+      start: 0.5
+      max: 1.4
+    notes: Same syringe for every weight.
+    reviewed_by: PLACEHOLDER
+    reviewed_on: PLACEHOLDER
