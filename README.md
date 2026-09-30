@@ -17,7 +17,9 @@ Everything clinical lives in one file: [`drugs.yaml`](drugs.yaml). You never nee
 5. A second clinician reviews and approves the pull request.
 6. Press **Merge**. The site updates within a few minutes.
 
-The automatic checks and required approval are not set up yet.
+The automatic checks are set up. The required second approval is not set up yet.
+
+If a check fails, open the pull request, press **Details** next to the failed check, and read the lines under **Check drugs.yaml**. Each one names the drug and field, for example `Adrenaline → dose → max: must be a number (found "1,5")`. The rate table is on the check's **Summary** page.
 
 ### Editing rules
 
@@ -34,6 +36,7 @@ The top of `drugs.yaml` lists the units and drug groups the app understands.
 | Section | What it controls |
 | --- | --- |
 | `disclaimer` | The pop-up shown every time someone opens the calculator: title, heading, text and button label. |
+| `prototype_banner` | The thin banner at the top of the page. Set it to `""` to hide it. |
 | `standard_diluent` | The diluent shown in syringe instructions, unless a drug sets its own. |
 | `weight_limits` | Weights that are impossible (no rates shown) or unusual (rates shown with a warning). Applies at every age. |
 | `weight_for_age_checks` | How far the weight can differ from the age estimate before a "check" note, or before the safeguarding flag that hides results until the user confirms the weight. Includes the flag wording. |
@@ -60,3 +63,17 @@ The top of `drugs.yaml` lists the units and drug groups the app understands.
 ```
 
 To add a drug, copy an existing entry, paste it at the end of the `drugs` list, and change the values.
+
+## For developers
+
+Requires Node 24 (`nvm use`).
+
+```bash
+npm ci
+npm run dev        # local server
+npm test           # unit and component tests
+npm run validate   # check drugs.yaml
+npm run build      # validate, typecheck and build to dist/
+```
+
+Code lives in `src/`: `data/` reads and checks `drugs.yaml`, `calc/` does the maths, `components/` is the interface. Tests use `src/test/fixture-drugs.yaml`, not `drugs.yaml`, so dose changes never break them.
