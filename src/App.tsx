@@ -19,6 +19,7 @@ export const App = ({ data }: Props) => {
   const [stale, setStale] = useState(false)
   const [proceeded, setProceeded] = useState(false)
   const [doses, setDoses] = useState(() => startDoses(data.drugs))
+  const [submitCount, setSubmitCount] = useState(0)
   const weightInputRef = useRef<HTMLInputElement>(null)
 
   const check = submission === null ? null : submission.check
@@ -29,6 +30,8 @@ export const App = ({ data }: Props) => {
     setSubmission({ ...patient, check: checkWeight(patient, data) })
     setStale(false)
     setProceeded(false)
+    setDoses(startDoses(data.drugs))
+    setSubmitCount(count => count + 1)
   }
 
   const changeWeight = () => {
@@ -60,6 +63,7 @@ export const App = ({ data }: Props) => {
           <ResultsSummary submission={submission} stale={stale} />
           <div className="results">
             <DrugList
+              key={submitCount}
               drugs={data.drugs}
               weightKg={validWeight(submission)}
               doses={doses}

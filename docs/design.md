@@ -31,13 +31,14 @@ It is hosted on GitHub Pages. A non-technical clinical editor maintains all dose
 3. **Patient form.**
    - Age: years box and months box, both optional. Whole numbers only. Months 0–11 when years are entered. 18 years maximum.
    - Weight: kg box, no spinner buttons.
-   - "Estimate weight" tick box: shown only when the age falls inside a `weight_from_age` band. Otherwise it is hidden and the message "Enter an age of 1–13 years to estimate weight." is shown (range text generated from the data). Ticking it fills and locks the weight box with the estimate. If the age moves out of range, it unticks and clears the weight.
+   - "Estimate weight" tick box: shown only when the age falls inside a `weight_from_age` band. Otherwise it is hidden and the message "Enter an age of 1–13 years to estimate weight." is shown (range text generated from the data). Ticking it fills and locks the weight box with the estimate. If the age moves out of range, it unticks and clears the weight. Unticking it clears the weight, so a measured weight must be typed.
    - Submit button (Enter also submits). Rates only change on Submit.
 4. **Results.**
    - Summary box: "Rates for **14 kg** · **3 years 6 months**", with an "Estimated" tag when the weight is estimated.
    - If the form changes after Submit, the list fades and the summary reads "Age or weight changed. Press Submit to update the rates."
    - Drug list grouped by drug group, each group headed with its colour. Each row shows the name, the syringe contents ("4.2 mg in 50 mL"), the rate in mL/hr, and the dose it is based on.
    - Tapping a row opens it (one at a time): draw-up instruction, "1 mL/hr = …", dose input with − and + buttons, range warning, notes.
+   - Every Submit resets all doses to their start values.
    - A dose changed from its start value shows its rate in the accent colour. A dose outside `min`–`max` shows a warning (amber below, red above).
 5. **Footer.** Data version and date from `drugs.yaml`.
 

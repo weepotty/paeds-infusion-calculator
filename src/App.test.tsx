@@ -93,3 +93,17 @@ describe('safeguarding', () => {
     expect(screen.getByLabelText('Weight')).toHaveFocus()
   })
 })
+
+it('resets adjusted doses to the start dose on every Submit', async () => {
+  await renderApp()
+  await submit('', '10')
+  await userEvent.click(adrenalineRow())
+  const dose = screen.getByLabelText('Dose for Adrenaline')
+  await userEvent.clear(dose)
+  await userEvent.type(dose, '0.2')
+  expect(within(adrenalineRow()).getByText('2.0')).toBeInTheDocument()
+  await userEvent.click(screen.getByRole('button', { name: 'Submit' }))
+  expect(within(adrenalineRow()).getByText('1.0')).toBeInTheDocument()
+  await userEvent.click(adrenalineRow())
+  expect(screen.getByLabelText('Dose for Adrenaline')).toHaveValue('0.1')
+})
