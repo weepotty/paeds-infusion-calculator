@@ -14,7 +14,7 @@ export const DoseInput = ({ drug, dose, onDoseChange }: Props) => {
   const change = (value: string) => {
     setText(value)
     const parsed = parseDecimalInput(value)
-    if (parsed !== null) onDoseChange(parsed)
+    if (parsed !== null && parsed > 0) onDoseChange(parsed)
   }
 
   const nudge = (direction: 1 | -1) => {
@@ -23,21 +23,33 @@ export const DoseInput = ({ drug, dose, onDoseChange }: Props) => {
     onDoseChange(next)
   }
 
+  const reset = () => {
+    setText(String(drug.dose.start))
+    onDoseChange(drug.dose.start)
+  }
+
   return (
-    <div className="dose-input">
-      <button type="button" className="step-btn" aria-label="Decrease dose" onClick={() => nudge(-1)}>
-        −
-      </button>
-      <input
-        inputMode="decimal"
-        aria-label={`Dose for ${drug.name}`}
-        value={text}
-        onChange={event => change(event.target.value)}
-      />
-      <button type="button" className="step-btn" aria-label="Increase dose" onClick={() => nudge(1)}>
-        +
-      </button>
-      <span>{doseUnitLabel(drug.dose.unit)}</span>
-    </div>
+    <>
+      <div className="dose-input">
+        <button type="button" className="step-btn" aria-label="Decrease dose" onClick={() => nudge(-1)}>
+          −
+        </button>
+        <input
+          inputMode="decimal"
+          aria-label={`Dose for ${drug.name}`}
+          value={text}
+          onChange={event => change(event.target.value)}
+        />
+        <button type="button" className="step-btn" aria-label="Increase dose" onClick={() => nudge(1)}>
+          +
+        </button>
+        <span>{doseUnitLabel(drug.dose.unit)}</span>
+      </div>
+      {dose === drug.dose.start ? null : (
+        <button type="button" className="btn-secondary" onClick={reset}>
+          Reset to start dose
+        </button>
+      )}
+    </>
   )
 }

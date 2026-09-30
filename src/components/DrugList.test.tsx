@@ -103,6 +103,33 @@ describe('an open row', () => {
     expect(screen.queryByText(/NaN/)).not.toBeInTheDocument()
   })
 
+  it('ignores a zero or part-typed zero dose', async () => {
+    render(<Harness weightKg={10} />)
+    await userEvent.click(row('Adrenaline'))
+    const dose = screen.getByLabelText('Dose for Adrenaline')
+    await userEvent.clear(dose)
+    await userEvent.type(dose, '0.2')
+    await userEvent.clear(dose)
+    await userEvent.type(dose, '0')
+    expect(within(row('Adrenaline')).getByText('2.0')).toBeInTheDocument()
+    await userEvent.type(dose, '.')
+    expect(within(row('Adrenaline')).getByText('2.0')).toBeInTheDocument()
+  })
+
+  it('offers to reset an adjusted dose to the start dose', async () => {
+    render(<Harness weightKg={10} />)
+    await userEvent.click(row('Adrenaline'))
+    expect(screen.queryByRole('button', { name: 'Reset to start dose' })).not.toBeInTheDocument()
+    const dose = screen.getByLabelText('Dose for Adrenaline')
+    await userEvent.clear(dose)
+    await userEvent.type(dose, '0.2')
+    expect(within(row('Adrenaline')).getByText('2.0')).toBeInTheDocument()
+    await userEvent.click(screen.getByRole('button', { name: 'Reset to start dose' }))
+    expect(dose).toHaveValue('0.1')
+    expect(within(row('Adrenaline')).getByText('1.0')).toBeInTheDocument()
+    expect(screen.queryByRole('button', { name: 'Reset to start dose' })).not.toBeInTheDocument()
+  })
+
   it('steps the dose with the + and − buttons', async () => {
     render(<Harness weightKg={10} />)
     await userEvent.click(row('Adrenaline'))
