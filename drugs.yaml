@@ -41,6 +41,9 @@ disclaimer:
 # The thin banner at the top of the page. Set it to "" to hide it.
 prototype_banner: Prototype only. Not for clinical use.
 
+# Where "Report a dose problem" emails go. Set it to "" to hide the link.
+report_email: placeholder@gmail.com
+
 standard_diluent: glucose 5% or sodium chloride 0.9%
 
 # Weight checks.

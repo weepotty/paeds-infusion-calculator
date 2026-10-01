@@ -47,6 +47,7 @@ export type AppData = {
   updated: string
   disclaimer: { title: string; heading: string; paragraphs: string[]; button: string }
   prototypeBanner: string
+  reportEmail: string
   standardDiluent: string
   weightLimits: { blockBelowKg: number; blockAboveKg: number; warnBelowKg: number; warnAboveKg: number }
   weightForAgeChecks: {

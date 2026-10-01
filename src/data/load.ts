@@ -36,6 +36,7 @@ const toAppData = (file: DataFile): AppData => ({
     button: file.disclaimer.button,
   },
   prototypeBanner: (file.prototype_banner ?? '').trim(),
+  reportEmail: (file.report_email ?? '').trim(),
   standardDiluent: file.standard_diluent,
   weightLimits: {
     blockBelowKg: file.weight_limits.block_below_kg,

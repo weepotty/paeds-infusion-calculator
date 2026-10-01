@@ -5,9 +5,9 @@ import { ResultsSummary } from './ResultsSummary'
 
 const ok: Submission['check'] = { ok: true, notes: [], safeguarding: null }
 
-it('prompts before the first submit', () => {
-  render(<ResultsSummary submission={null} stale={false} />)
-  expect(screen.getByText("Enter the child's weight, then press Submit.")).toBeInTheDocument()
+it('shows nothing before the first submit', () => {
+  const { container } = render(<ResultsSummary submission={null} stale={false} />)
+  expect(container).toBeEmptyDOMElement()
 })
 
 it('shows weight and age', () => {

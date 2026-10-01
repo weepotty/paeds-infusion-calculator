@@ -2,6 +2,7 @@ import { useRef, useState } from 'react'
 import { startDoses } from './calc/infusion'
 import type { PatientInput } from './calc/patient'
 import { checkWeight, type Submission, validWeight } from './calc/weightCheck'
+import { BackToTop } from './components/BackToTop'
 import { Banner } from './components/Banner'
 import { Disclaimer } from './components/Disclaimer'
 import { DrugList } from './components/DrugList'
@@ -15,6 +16,12 @@ import type { AppData } from './data/types'
 type Props = { data: AppData; registerUpdates?: RegisterUpdates }
 
 const noUpdates: RegisterUpdates = () => {}
+
+const reportLink = (data: AppData): string => {
+  const subject = 'Dose problem report'
+  const body = `Data version: ${data.version}\nDrug:\nWhat looks wrong:\n`
+  return `mailto:${data.reportEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+}
 
 export const App = ({ data, registerUpdates = noUpdates }: Props) => {
   const [acknowledged, setAcknowledged] = useState(false)
@@ -37,6 +44,11 @@ export const App = ({ data, registerUpdates = noUpdates }: Props) => {
     setSubmitCount(count => count + 1)
   }
 
+  const acknowledge = () => {
+    setAcknowledged(true)
+    window.scrollTo(0, 0)
+  }
+
   const changeWeight = () => {
     weightInputRef.current?.focus()
     weightInputRef.current?.select()
@@ -45,13 +57,13 @@ export const App = ({ data, registerUpdates = noUpdates }: Props) => {
   return (
     <>
       <UpdateBanner registerUpdates={registerUpdates} />
-      {acknowledged ? null : <Disclaimer disclaimer={data.disclaimer} onAcknowledge={() => setAcknowledged(true)} />}
+      {acknowledged ? null : <Disclaimer disclaimer={data.disclaimer} onAcknowledge={acknowledge} />}
       <div data-testid="page" inert={!acknowledged}>
         <Banner text={data.prototypeBanner} />
         <header className="bar">
           <div className="bar-inner">
             <div className="brand">
-              <img className="brand-icon" src={`${import.meta.env.BASE_URL}icon.svg`} alt="" width={28} height={28} />
+              <img className="brand-icon" src={`${import.meta.env.BASE_URL}icon.svg`} alt="" width={40} height={40} />
               <span>
                 <strong>Paeds Infusion Calculator</strong> · PICU and transfer
               </span>
@@ -87,8 +99,17 @@ export const App = ({ data, registerUpdates = noUpdates }: Props) => {
               />
             ) : null}
           </div>
-          <footer>{`Data version ${data.version} · Updated ${data.updated}`}</footer>
+          <footer>
+            <p>{`Data version ${data.version} · Updated ${data.updated}`}</p>
+            <p>Website made by Shona</p>
+            {data.reportEmail === '' ? null : (
+              <p>
+                Report a dose problem: <a href={reportLink(data)}>{data.reportEmail}</a>
+              </p>
+            )}
+          </footer>
         </main>
+        <BackToTop />
       </div>
     </>
   )

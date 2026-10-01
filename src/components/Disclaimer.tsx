@@ -8,6 +8,8 @@ export const Disclaimer = ({ disclaimer, onAcknowledge }: Props) => {
 
   useEffect(() => {
     buttonRef.current?.focus()
+    document.documentElement.classList.add('locked')
+    return () => document.documentElement.classList.remove('locked')
   }, [])
 
   return (
@@ -23,8 +25,8 @@ export const Disclaimer = ({ disclaimer, onAcknowledge }: Props) => {
           ))}
         </div>
         <div className="disc-foot">
-          <button type="button" ref={buttonRef} onClick={onAcknowledge}>
-            {disclaimer.button}
+          <button type="button" className="btn-primary" ref={buttonRef} onClick={onAcknowledge}>
+            <span className="btn-top">{disclaimer.button}</span>
           </button>
         </div>
       </div>

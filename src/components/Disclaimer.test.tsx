@@ -20,3 +20,10 @@ it('calls onAcknowledge from the button only', async () => {
   await userEvent.click(screen.getByRole('button', { name: 'I understand' }))
   expect(onAcknowledge).toHaveBeenCalledOnce()
 })
+
+it('stops the page behind from scrolling while open', () => {
+  const { unmount } = render(<Disclaimer disclaimer={fixture.disclaimer} onAcknowledge={() => {}} />)
+  expect(document.documentElement).toHaveClass('locked')
+  unmount()
+  expect(document.documentElement).not.toHaveClass('locked')
+})

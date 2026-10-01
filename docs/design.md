@@ -14,7 +14,7 @@ It is hosted on GitHub Pages. A non-technical clinical editor maintains all dose
 - Phone-first. It must also work on tablet and desktop.
 - Works offline once opened, for ambulances with no signal.
 - UK conventions: "micrograms" and "nanograms" written in full; drug groups coloured to match ISO 26825 syringe labels.
-- Font: Roboto, bundled with the app (not loaded from Google at runtime).
+- Font: Inter, bundled with the app (not loaded from Google at runtime).
 - All values are placeholders until a named clinician signs them off.
 
 ## Out of scope for now
@@ -40,7 +40,7 @@ It is hosted on GitHub Pages. A non-technical clinical editor maintains all dose
    - Tapping a row opens it (one at a time): draw-up instruction, "1 mL/hr = …", dose input with − and + buttons, range warning, notes.
    - Every Submit resets all doses to their start values.
    - A dose changed from its start value shows its rate in the accent colour. A dose outside `min`–`max` shows a warning (amber below, red above).
-5. **Footer.** Data version and date from `drugs.yaml`.
+5. **Footer.** Data version and date from `drugs.yaml`, "Website made by Shona", and "Report a dose problem:" followed by the `report_email` address as an email link (pre-filled with the data version). An empty `report_email` hides the link.
 
 ## Weight checks
 
@@ -57,7 +57,7 @@ Age-based checks only run when an age is entered, a `weight_from_age` band cover
 
 ## Data file: `drugs.yaml`
 
-Top-level sections: `version`, `updated`, `disclaimer`, `prototype_banner`, `standard_diluent`, `weight_limits`, `weight_for_age_checks`, `weight_from_age`, `drugs`.
+Top-level sections: `version`, `updated`, `disclaimer`, `prototype_banner`, `report_email`, `standard_diluent`, `weight_limits`, `weight_for_age_checks`, `weight_from_age`, `drugs`.
 
 Human-readable values are parsed by the app:
 
@@ -104,7 +104,7 @@ Rounding for display only: rates to 1 decimal place, or 2 below 1 mL/hr. Other v
 - `src/calc/`: pure functions for unit conversion, rates, weight estimate and weight checks. No React.
 - `src/components/`: Disclaimer, Banner, PatientForm, ResultsSummary, SafeguardingMask, DrugList, DrugRow.
 - **Offline:** `vite-plugin-pwa` caches the app after the first visit. It checks for a new version when the app comes back on screen and every 15 minutes while open. When a new version is ready it shows "A newer version of this calculator is available. Reload to use the new version." with a Reload button; it never reloads by itself.
-- **Font:** `@fontsource/roboto`, bundled.
+- **Font:** `@fontsource-variable/inter`, bundled.
 
 ## CI and deploy (GitHub Actions)
 

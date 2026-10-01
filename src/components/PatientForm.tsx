@@ -145,7 +145,9 @@ export const PatientForm = ({ bands, check, weightInputRef, onSubmit, onEdit }: 
         {messageText(ageError, check)}
       </div>
       <div className="psubmit">
-        <button type="submit">Submit</button>
+        <button type="submit" className="btn-primary">
+          <span className="btn-top">Submit</span>
+        </button>
       </div>
     </form>
   )

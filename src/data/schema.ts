@@ -120,6 +120,12 @@ export const fileSchema = z.strictObject({
   updated: text,
   disclaimer: z.strictObject({ title: text, heading: text, text, button: text }),
   prototype_banner: z.string().nullish(),
+  report_email: z
+    .string()
+    .refine(value => value.trim() === '' || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim()), {
+      message: 'must be an email address, or "" to hide the link',
+    })
+    .nullish(),
   standard_diluent: text,
   weight_limits: weightLimits,
   weight_for_age_checks: z.strictObject({

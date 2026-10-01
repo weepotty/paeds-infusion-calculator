@@ -28,6 +28,7 @@ describe('loadData', () => {
     })
     expect(result.data.disclaimer.paragraphs).toHaveLength(2)
     expect(result.data.prototypeBanner).toBe('Prototype only. Not for clinical use.')
+    expect(result.data.reportEmail).toBe('placeholder@gmail.com')
     expect(result.data.weightFromAge[0]).toMatchObject({ fromMonths: 12, toMonthsExclusive: 168, ageIn: 'years' })
     expect(new Set(result.data.drugs.map(drug => drug.id)).size).toBe(result.data.drugs.length)
   })
@@ -35,6 +36,18 @@ describe('loadData', () => {
   it('accepts spacing and case variants', () => {
     const result = loadData(fixtureYaml.replace('amount: 0.3 mg/kg', 'amount: 0.3MG / kg').replace('make_up_to: 50 mL', 'make_up_to: 50 ML'))
     expect(result.ok).toBe(true)
+  })
+
+  it('rejects a report email that is not an email address', () => {
+    expect(broken('report_email: placeholder@gmail.com', 'report_email: placeholder')).toContain(
+      'report_email: must be an email address, or "" to hide the link (found "placeholder")',
+    )
+  })
+
+  it('allows an empty report email', () => {
+    const result = loadData(fixtureYaml.replace('report_email: placeholder@gmail.com', 'report_email: ""'))
+    if (!result.ok) throw new Error(result.errors.join('\n'))
+    expect(result.data.reportEmail).toBe('')
   })
 
   it('rejects a decimal comma', () => {

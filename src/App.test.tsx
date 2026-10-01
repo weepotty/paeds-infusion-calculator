@@ -1,6 +1,6 @@
 import { render, screen, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 import { fixture } from './test/fixture'
 import { App } from './App'
 
@@ -25,12 +25,29 @@ describe('disclaimer', () => {
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
     expect(screen.getByTestId('page')).not.toHaveAttribute('inert')
   })
+
+  it('returns to the top of the page when acknowledged', async () => {
+    vi.mocked(window.scrollTo).mockClear()
+    await renderApp()
+    expect(window.scrollTo).toHaveBeenCalledWith(0, 0)
+  })
+})
+
+it('hides the report link when no email is set', async () => {
+  render(<App data={{ ...fixture, reportEmail: '' }} />)
+  await userEvent.click(screen.getByRole('button', { name: 'I understand' }))
+  expect(screen.queryByText(/Report a dose problem/)).not.toBeInTheDocument()
 })
 
 it('shows the banner and data version', async () => {
   await renderApp()
   expect(screen.getByText('Prototype only. Not for clinical use.')).toBeInTheDocument()
   expect(screen.getByText(`Data version ${fixture.version} · Updated ${fixture.updated}`)).toBeInTheDocument()
+  expect(screen.getByText('Website made by Shona')).toBeInTheDocument()
+  expect(screen.getByText(/Report a dose problem:/)).toBeInTheDocument()
+  const report = screen.getByRole('link', { name: 'placeholder@gmail.com' })
+  expect(report.getAttribute('href')).toMatch(/^mailto:placeholder@gmail\.com\?subject=/)
+  expect(decodeURIComponent(report.getAttribute('href') ?? '')).toContain(`Data version: ${fixture.version}`)
 })
 
 it('shows rates after Submit', async () => {
