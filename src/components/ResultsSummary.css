@@ -1,0 +1,37 @@
+.sheet-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 10px;
+  margin: 0 0 14px;
+  padding: 12px 16px;
+  border: 2px solid var(--accent);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 17px;
+}
+
+.sheet-meta b {
+  color: var(--ink);
+  font: 700 20px var(--font-body);
+  font-variant-numeric: tabular-nums;
+}
+
+.sheet-meta.stale {
+  border-color: var(--warn);
+  color: var(--warn);
+  font-weight: 600;
+}
+
+.weight-src {
+  align-self: center;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--warn-soft);
+  color: var(--warn);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}

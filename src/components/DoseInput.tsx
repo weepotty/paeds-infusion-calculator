@@ -2,6 +2,8 @@ import { useState } from 'react'
 import { parseDecimalInput } from '../calc/patient'
 import { doseUnitLabel } from '../calc/units'
 import type { Drug } from '../data/types'
+import { PrimaryButton } from './PrimaryButton'
+import './DoseInput.css'
 
 type Props = { drug: Drug; dose: number; onDoseChange: (dose: number) => void }
 
@@ -46,9 +48,9 @@ export const DoseInput = ({ drug, dose, onDoseChange }: Props) => {
         <span>{doseUnitLabel(drug.dose.unit)}</span>
       </div>
       {dose === drug.dose.start ? null : (
-        <button type="button" className="btn-secondary" onClick={reset}>
-          Reset to start dose
-        </button>
+        <PrimaryButton className="dose-reset" onClick={reset}>
+          Reset
+        </PrimaryButton>
       )}
     </>
   )

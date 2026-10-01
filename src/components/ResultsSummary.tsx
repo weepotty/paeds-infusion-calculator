@@ -1,5 +1,6 @@
 import { formatAge, formatWeight } from '../calc/format'
 import { type Submission, validWeight } from '../calc/weightCheck'
+import './ResultsSummary.css'
 
 type Props = { submission: Submission | null; stale: boolean }
 

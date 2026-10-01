@@ -3,6 +3,7 @@ import { calculateInfusion, type Infusion } from '../calc/infusion'
 import { doseUnitLabel } from '../calc/units'
 import type { Drug } from '../data/types'
 import { DoseInput } from './DoseInput'
+import './DrugRow.css'
 
 type Props = {
   drug: Drug

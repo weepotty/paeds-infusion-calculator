@@ -1,0 +1,9 @@
+.proto-banner {
+  padding: 6px var(--gutter);
+  border-bottom: 1px solid var(--line);
+  background: var(--warn-soft);
+  color: var(--warn);
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+}

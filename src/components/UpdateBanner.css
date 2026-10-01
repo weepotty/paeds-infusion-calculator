@@ -1,0 +1,26 @@
+.update-banner {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px 14px;
+  padding: 10px var(--gutter);
+  background: var(--accent);
+  color: var(--surface);
+  font-weight: 600;
+  text-align: center;
+}
+
+.update-banner button {
+  min-height: 40px;
+  padding: 0 18px;
+  border: 0;
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--accent);
+  font: 600 15px var(--font-body);
+  cursor: pointer;
+}

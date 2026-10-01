@@ -1,0 +1,44 @@
+.dose-input {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.dose-input input {
+  width: 7ch;
+  padding: 4px 8px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--bg);
+  color: var(--ink);
+  font: 600 22px var(--font-body);
+  font-variant-numeric: tabular-nums;
+}
+
+.dose-input span {
+  color: var(--muted);
+}
+
+.step-btn {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: var(--bg);
+  color: var(--ink);
+  font: 600 22px/1 var(--font-body);
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.step-btn:active {
+  background: var(--accent-soft);
+}
+
+.dose-reset {
+  justify-self: start;
+  font-size: 14px;
+}

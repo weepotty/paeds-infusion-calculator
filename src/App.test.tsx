@@ -46,8 +46,7 @@ it('shows the banner and data version', async () => {
   expect(screen.getByText('Website made by Shona')).toBeInTheDocument()
   expect(screen.getByText(/Report a dose problem:/)).toBeInTheDocument()
   const report = screen.getByRole('link', { name: 'placeholder@gmail.com' })
-  expect(report.getAttribute('href')).toMatch(/^mailto:placeholder@gmail\.com\?subject=/)
-  expect(decodeURIComponent(report.getAttribute('href') ?? '')).toContain(`Data version: ${fixture.version}`)
+  expect(report).toHaveAttribute('href', 'mailto:placeholder@gmail.com?subject=Dose%20problem%20report')
 })
 
 it('shows rates after Submit', async () => {

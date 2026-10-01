@@ -1,0 +1,42 @@
+.page-header {
+  border-bottom: 1px solid var(--line);
+  background: var(--surface);
+}
+
+.page-header-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 14px var(--gutter) 20px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 17px;
+  color: var(--muted);
+}
+
+.brand-icon {
+  flex: none;
+  border-radius: 9px;
+}
+
+.brand strong {
+  color: var(--ink);
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+@media (max-width: 480px) {
+  .brand {
+    font-size: 15px;
+  }
+
+  .brand strong {
+    font-size: 19px;
+  }
+}

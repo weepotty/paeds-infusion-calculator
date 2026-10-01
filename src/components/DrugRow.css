@@ -1,0 +1,130 @@
+.row + .row {
+  border-top: 1px solid var(--line);
+}
+
+.row-head {
+  display: grid;
+  grid-template-columns: 1fr auto 18px;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  min-height: 60px;
+  padding: 12px 14px;
+  border: 0;
+  background: none;
+  color: var(--ink);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.row-head:hover {
+  background: var(--bg);
+}
+
+.rname {
+  min-width: 0;
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.25;
+}
+
+.rname small,
+.rrate small {
+  display: block;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.rrate {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.rrate b {
+  font-size: 22px;
+  font-variant-numeric: tabular-nums;
+}
+
+.rrate b.no-fit {
+  color: var(--danger);
+  font-size: 15px;
+}
+
+.rrate .u {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.rrate.adjusted b {
+  color: var(--accent);
+}
+
+.rrate small.flag {
+  color: var(--danger);
+}
+
+.chev {
+  justify-self: center;
+  width: 10px;
+  height: 10px;
+  margin-top: -4px;
+  border-right: 2px solid var(--muted);
+  border-bottom: 2px solid var(--muted);
+  transform: rotate(45deg);
+}
+
+.row-head[aria-expanded="true"] .chev {
+  margin-top: 4px;
+  transform: rotate(-135deg);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .chev {
+    transition: transform 0.15s;
+  }
+}
+
+.row-body {
+  display: grid;
+  gap: 12px;
+  padding: 4px 14px 16px;
+  font-size: 15px;
+}
+
+.instr {
+  padding: 12px 14px;
+  border-radius: 8px;
+  background: var(--accent-soft);
+}
+
+.rule {
+  color: var(--muted);
+}
+
+.rule b {
+  color: var(--ink);
+}
+
+.alert {
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+.alert.warn {
+  background: var(--warn-soft);
+  color: var(--warn);
+}
+
+.alert.danger {
+  background: var(--danger-soft);
+  color: var(--danger);
+}
+
+.notes {
+  padding-top: 12px;
+  border-top: 1px dashed var(--line);
+  color: var(--muted);
+}

@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import './UpdateBanner.css'
 
 export type RegisterUpdates = (onUpdateReady: (reload: () => void) => void) => void
 

@@ -6,6 +6,8 @@ import { BackToTop } from './components/BackToTop'
 import { Banner } from './components/Banner'
 import { Disclaimer } from './components/Disclaimer'
 import { DrugList } from './components/DrugList'
+import { Footer } from './components/Footer'
+import { PageHeader } from './components/PageHeader'
 import { PatientForm } from './components/PatientForm'
 import { ResultsSummary } from './components/ResultsSummary'
 import { SafeguardingFlag } from './components/SafeguardingFlag'
@@ -16,12 +18,6 @@ import type { AppData } from './data/types'
 type Props = { data: AppData; registerUpdates?: RegisterUpdates }
 
 const noUpdates: RegisterUpdates = () => {}
-
-const reportLink = (data: AppData): string => {
-  const subject = 'Dose problem report'
-  const body = `Data version: ${data.version}\nDrug:\nWhat looks wrong:\n`
-  return `mailto:${data.reportEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
-}
 
 export const App = ({ data, registerUpdates = noUpdates }: Props) => {
   const [acknowledged, setAcknowledged] = useState(false)
@@ -60,24 +56,16 @@ export const App = ({ data, registerUpdates = noUpdates }: Props) => {
       {acknowledged ? null : <Disclaimer disclaimer={data.disclaimer} onAcknowledge={acknowledge} />}
       <div data-testid="page" inert={!acknowledged}>
         <Banner text={data.prototypeBanner} />
-        <header className="bar">
-          <div className="bar-inner">
-            <div className="brand">
-              <img className="brand-icon" src={`${import.meta.env.BASE_URL}icon.svg`} alt="" width={40} height={40} />
-              <span>
-                <strong>Paeds Infusion Calculator</strong> · PICU and transfer
-              </span>
-            </div>
-            <PatientForm
-              bands={data.weightFromAge}
-              check={check}
-              weightInputRef={weightInputRef}
-              onSubmit={submit}
-              onEdit={() => setStale(true)}
-            />
-          </div>
-        </header>
-        <main className="wrap">
+        <PageHeader>
+          <PatientForm
+            bands={data.weightFromAge}
+            check={check}
+            weightInputRef={weightInputRef}
+            onSubmit={submit}
+            onEdit={() => setStale(true)}
+          />
+        </PageHeader>
+        <main className="page-main page-column">
           {safeguarding !== null && proceeded ? <SafeguardingFlag safeguarding={safeguarding} /> : null}
           <ResultsSummary submission={submission} stale={stale} />
           <div className="results">
@@ -99,15 +87,7 @@ export const App = ({ data, registerUpdates = noUpdates }: Props) => {
               />
             ) : null}
           </div>
-          <footer>
-            <p>{`Data version ${data.version} · Updated ${data.updated}`}</p>
-            <p>Website made by Shona</p>
-            {data.reportEmail === '' ? null : (
-              <p>
-                Report a dose problem: <a href={reportLink(data)}>{data.reportEmail}</a>
-              </p>
-            )}
-          </footer>
+          <Footer version={data.version} updated={data.updated} reportEmail={data.reportEmail} />
         </main>
         <BackToTop />
       </div>

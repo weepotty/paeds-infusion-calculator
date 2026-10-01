@@ -1,0 +1,123 @@
+.patient {
+  display: grid;
+  gap: 6px;
+  align-self: stretch;
+}
+
+.prow {
+  display: grid;
+  gap: 6px;
+}
+
+.prow + .prow {
+  margin-top: 8px;
+}
+
+.plabel {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.pfields {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 16px;
+}
+
+.pf {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 4px;
+  height: 52px;
+  padding: 0 14px 0 4px;
+  border: 1.5px solid transparent;
+  border-radius: 14px;
+  background: var(--bg);
+  box-shadow: inset 0 1px 3px rgb(19 32 42 / 0.08);
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--muted);
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+}
+
+.pf:hover {
+  border-color: var(--line);
+}
+
+.pf:focus-within {
+  border-color: var(--accent);
+  background: var(--surface);
+  box-shadow: 0 0 0 4px var(--accent-soft), 0 6px 16px color-mix(in srgb, var(--accent) 18%, transparent);
+}
+
+.pf:has(input.invalid) {
+  border-color: var(--danger);
+  background: var(--danger-soft);
+}
+
+.pf:has(input[readonly]) {
+  border-style: dashed;
+  border-color: var(--warn);
+  background: var(--warn-soft);
+}
+
+.pf input {
+  width: 2.6em;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  font: 600 22px var(--font-body);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+.pf input:focus,
+.pf input:focus-visible {
+  outline: none;
+}
+
+.pf input[readonly] {
+  color: var(--warn);
+}
+
+.est {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  line-height: 1.2;
+  cursor: pointer;
+}
+
+.est input {
+  width: 20px;
+  height: 20px;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+
+.est-hint {
+  margin: 4px 0 0;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.weight-msg {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--danger);
+}
+
+.est-hint:empty,
+.weight-msg:empty {
+  display: none;
+}
+
+.psubmit {
+  justify-self: end;
+  margin-top: 16px;
+}

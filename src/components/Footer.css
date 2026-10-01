@@ -1,0 +1,14 @@
+.page-footer {
+  margin-top: 32px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.page-footer p {
+  margin: 0 0 4px;
+}
+
+.page-footer a {
+  color: var(--accent);
+  font-weight: 600;
+}

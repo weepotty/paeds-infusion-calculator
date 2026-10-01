@@ -1,0 +1,45 @@
+.results {
+  position: relative;
+}
+
+.list {
+  display: grid;
+  gap: 18px;
+}
+
+.list.stale {
+  opacity: 0.4;
+}
+
+.list.masked {
+  filter: blur(7px);
+  opacity: 0.35;
+  user-select: none;
+}
+
+.grp-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 6px 2px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.swatch {
+  flex: none;
+  width: 14px;
+  height: 14px;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+}
+
+.grp {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+}

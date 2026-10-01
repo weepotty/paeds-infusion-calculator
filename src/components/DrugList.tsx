@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { DRUG_GROUPS } from '../data/groups'
 import type { Drug } from '../data/types'
 import { DrugRow } from './DrugRow'
+import './DrugList.css'
 
 type Props = {
   drugs: Drug[]

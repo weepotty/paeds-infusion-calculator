@@ -1,0 +1,102 @@
+.sg-icon {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--flag-ink);
+  color: var(--flag-bg);
+  font-weight: 700;
+}
+
+.sg-flag {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 14px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: var(--flag-bg);
+  color: var(--flag-ink);
+}
+
+.sg-flag strong {
+  font-size: 17px;
+}
+
+.sg-flag p {
+  margin: 2px 0 0;
+  font-size: 15px;
+}
+
+.mask {
+  position: absolute;
+  inset: 0;
+  padding-top: 8px;
+}
+
+.mask-card {
+  position: sticky;
+  top: 16px;
+  max-width: 520px;
+  margin-inline: auto;
+  overflow: hidden;
+  border: 2px solid var(--flag-bg);
+  border-radius: 12px;
+  background: var(--surface);
+  box-shadow: 0 12px 32px rgb(0 0 0 / 0.18);
+}
+
+.mask-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  background: var(--flag-bg);
+  color: var(--flag-ink);
+  font-size: 18px;
+}
+
+.mask-body {
+  display: grid;
+  gap: 8px;
+  padding: 14px 16px 4px;
+  font-size: 15px;
+}
+
+.mask-body p {
+  margin: 0;
+}
+
+.mask-body .kg {
+  font: 700 18px var(--font-body);
+}
+
+.mask-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 14px 16px 16px;
+}
+
+.mask-actions button {
+  min-height: 48px;
+  padding: 0 18px;
+  border-radius: 8px;
+  font: 600 16px var(--font-body);
+  cursor: pointer;
+}
+
+.btn-flag {
+  border: 2px solid var(--flag-bg);
+  background: var(--flag-bg);
+  color: var(--flag-ink);
+}
+
+@media (max-width: 480px) {
+  .mask-actions button {
+    flex: 1 1 100%;
+  }
+}

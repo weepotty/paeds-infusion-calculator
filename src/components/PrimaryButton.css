@@ -1,0 +1,34 @@
+.btn-primary {
+  --btn-radius: 0.75em;
+  padding: 0;
+  border: 0;
+  border-radius: var(--btn-radius);
+  background: var(--ink);
+  font: 700 17px var(--font-body);
+  cursor: pointer;
+}
+
+.btn-top {
+  display: block;
+  padding: 0.75em 1.5em;
+  border: 2px solid var(--ink);
+  border-radius: var(--btn-radius);
+  background: var(--bg);
+  color: var(--ink);
+  transform: translateY(-0.2em);
+  transition: transform 0.1s ease;
+}
+
+.btn-primary:hover .btn-top {
+  transform: translateY(-0.33em);
+}
+
+.btn-primary:active .btn-top {
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-top {
+    transition: none;
+  }
+}

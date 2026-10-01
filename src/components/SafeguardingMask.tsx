@@ -1,5 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { type Safeguarding, safeguardingDetail } from '../calc/weightCheck'
+import { FlagIcon } from './FlagIcon'
+import './Safeguarding.css'
 
 type Props = { safeguarding: Safeguarding; onChangeWeight: () => void; onProceed: () => void }
 
@@ -21,9 +23,7 @@ export const SafeguardingMask = ({ safeguarding, onChangeWeight, onProceed }: Pr
         aria-describedby="mask-body"
       >
         <div className="mask-head">
-          <span className="sg-icon" aria-hidden="true">
-            !
-          </span>
+          <FlagIcon />
           <strong id="mask-title">Safeguarding flag</strong>
         </div>
         <div className="mask-body" id="mask-body">

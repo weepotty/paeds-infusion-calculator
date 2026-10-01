@@ -3,6 +3,9 @@ import { bandRangeText, estimateWeight, findWeightBand, formulaText } from '../c
 import { type PatientInput, parseAgeInput, parseDecimalInput } from '../calc/patient'
 import type { WeightCheck } from '../calc/weightCheck'
 import type { WeightBand } from '../data/types'
+import { PrimaryButton } from './PrimaryButton'
+import { UnitField } from './UnitField'
+import './PatientForm.css'
 
 type Props = {
   bands: WeightBand[]
@@ -78,30 +81,24 @@ export const PatientForm = ({ bands, check, weightInputRef, onSubmit, onEdit }: 
           Age
         </label>
         <div className="pfields">
-          <span className="pf">
-            <input
-              id="age-years"
-              inputMode="numeric"
-              aria-label="Age, years"
-              aria-invalid={ageError !== null}
-              className={ageError === null ? undefined : 'invalid'}
-              value={years}
-              onChange={event => changeAge(event.target.value, months)}
-            />
-            <span>years</span>
-          </span>
-          <span className="pf">
-            <input
-              id="age-months"
-              inputMode="numeric"
-              aria-label="Age, months"
-              aria-invalid={ageError !== null}
-              className={ageError === null ? undefined : 'invalid'}
-              value={months}
-              onChange={event => changeAge(years, event.target.value)}
-            />
-            <span>months</span>
-          </span>
+          <UnitField
+            id="age-years"
+            unit="years"
+            inputMode="numeric"
+            aria-label="Age, years"
+            invalid={ageError !== null}
+            value={years}
+            onChange={event => changeAge(event.target.value, months)}
+          />
+          <UnitField
+            id="age-months"
+            unit="months"
+            inputMode="numeric"
+            aria-label="Age, months"
+            invalid={ageError !== null}
+            value={months}
+            onChange={event => changeAge(years, event.target.value)}
+          />
         </div>
       </div>
       <div className="prow">
@@ -109,22 +106,19 @@ export const PatientForm = ({ bands, check, weightInputRef, onSubmit, onEdit }: 
           Weight
         </label>
         <div className="pfields">
-          <span className="pf">
-            <input
-              id="weight"
-              ref={weightInputRef}
-              inputMode="decimal"
-              aria-invalid={weightInvalid}
-              className={weightInvalid ? 'invalid' : undefined}
-              readOnly={estimate}
-              value={shownWeight}
-              onChange={event => {
-                setWeight(event.target.value)
-                onEdit()
-              }}
-            />
-            <span>kg</span>
-          </span>
+          <UnitField
+            id="weight"
+            unit="kg"
+            ref={weightInputRef}
+            inputMode="decimal"
+            invalid={weightInvalid}
+            readOnly={estimate}
+            value={shownWeight}
+            onChange={event => {
+              setWeight(event.target.value)
+              onEdit()
+            }}
+          />
           {band === null ? null : (
             <label className="est">
               estimate weight
@@ -144,11 +138,9 @@ export const PatientForm = ({ bands, check, weightInputRef, onSubmit, onEdit }: 
       <div className="weight-msg" aria-live="polite">
         {messageText(ageError, check)}
       </div>
-      <div className="psubmit">
-        <button type="submit" className="btn-primary">
-          <span className="btn-top">Submit</span>
-        </button>
-      </div>
+      <PrimaryButton type="submit" className="psubmit">
+        Submit
+      </PrimaryButton>
     </form>
   )
 }
